@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Container, Nav, NavLink, Row, Col, Input } from "reactstrap";
 import { FaCheck, FaSkull } from "react-icons/fa";
 
-const Addition: React.FC = () => {
+const Subtraction: React.FC = () => {
   const history = useHistory();
   const { term }: { term: string } = useParams();
   const [currentTerm, setCurrentTerm] = React.useState(
@@ -16,26 +16,26 @@ const Addition: React.FC = () => {
       <Nav tabs style={{ marginBottom: "1.5em" }}>
         {[2, 3].map((i) => (
           <NavLink
-            key={`addition-term-${i}`}
+            key={`subtraction-term-${i}`}
             active={`${i}` === currentTerm}
             href="#"
             onClick={() => {
               setCurrentTerm(`${i}`);
-              history.push(`/addition/${i}`);
+              history.push(`/subtraktion/${i}`);
             }}
           >
             {i} termer
           </NavLink>
         ))}
       </Nav>
-      <h1 style={{ marginBottom: "1em" }}>Addition, {currentTerm} termer</h1>
+      <h1 style={{ marginBottom: "1em" }}>Subtraktion, {currentTerm} termer</h1>
       <form>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
           <div
             key={`${i}-${currentTerm}`}
             style={{ backgroundColor: i % 2 === 0 ? "#ffffff" : "#f9f9f9" }}
           >
-            <AdditionQuestion
+            <SubtractionQuestion
               terms={parseInt(currentTerm, 10)}
               min={0}
               max={10}
@@ -47,7 +47,7 @@ const Addition: React.FC = () => {
   );
 };
 
-const AdditionQuestion: React.FC<{
+const SubtractionQuestion: React.FC<{
   min: number;
   max: number;
   terms: number;
@@ -60,16 +60,20 @@ const AdditionQuestion: React.FC<{
   React.useEffect(() => {
     const arr = [];
     for (let i = 0; i < terms; i++) {
-      arr.push(Math.floor(Math.random() * (max - min) + min));
+      let v;
+      do {
+        v = Math.floor(Math.random() * (max - min) + min);
+      } while (i > 0 && v > arr[i - 1]);
+      arr.push(v);
     }
     setVals(arr);
-    setSum(arr.reduce((a, b) => a + b));
+    setSum(arr.reduce((a, b) => a - b));
   }, [max, min, terms]);
 
   return (
     <Row style={{ marginBottom: "1em" }}>
       <Col xs={{ size: 5 }} md={{ size: 2 }}>
-        <h3>{vals.join(" + ")} =</h3>
+        <h3>{vals.join(" - ")} =</h3>
       </Col>
       <Col xs={{ size: 5 }} md={{ size: 2 }}>
         <Input
@@ -107,4 +111,4 @@ const AdditionQuestion: React.FC<{
   );
 };
 
-export default Addition;
+export default Subtraction;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navigation from "./navigation";
 import Addition from "./addition";
+import Subtraction from "./subtraction";
 import Multiplication from "./multiplication";
 
 const App: React.FC = () => {
@@ -17,8 +18,11 @@ const App: React.FC = () => {
           <Route path="/addition">
             <Addition />
           </Route>
+          <Route path="/subtraktion/:term">
+            <Subtraction />
+          </Route>
           <Route path="/subtraktion">
-            <Multiplication />
+            <Subtraction />
           </Route>
           <Route path="/multiplikation/:table">
             <Multiplication />

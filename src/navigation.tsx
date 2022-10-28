@@ -27,6 +27,11 @@ const Navigation: React.FC = () => {
             </NavLink>
           </NavItem>
           <NavItem>
+            <NavLink tag={Link} to="/subtraktion">
+              Subtraktion
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink tag={Link} to="/multiplikation">
               Multiplikation
             </NavLink>
