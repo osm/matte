@@ -16,19 +16,21 @@ const Navigation: React.FC = () => {
   return (
     <Navbar color="light" light expand="md">
       <NavbarBrand tag={Link} to="/">
-        Multiplikationstabellerna
+        Matte
       </NavbarBrand>
       <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="container-fluid" navbar>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-            <NavItem key={i}>
-              <NavLink tag={Link} to={`/${i}`}>
-                {i}
-                {":an"}
-              </NavLink>
-            </NavItem>
-          ))}
+          <NavItem>
+            <NavLink tag={Link} to="/addition">
+              Addition
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to="/multiplikation">
+              Multiplikation
+            </NavLink>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>
